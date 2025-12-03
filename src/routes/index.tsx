@@ -1,5 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { lazy } from 'react'
 import App from '@/App'
+
+const HomePage = lazy(() => import('@/pages/home'))
+const ProductDetailPage = lazy(() => import('@/pages/product-detail'))
 
 /**
  * Get basename dynamically from window location or environment
@@ -50,11 +54,11 @@ export const router = createBrowserRouter(
       children: [
         {
           index: true,
-          element: (
-            <div className="flex min-h-screen items-center justify-center">
-              <p className="text-muted-foreground">Start building your app</p>
-            </div>
-          ),
+          element: <HomePage />,
+        },
+        {
+          path: '/product/:id',
+          element: <ProductDetailPage />,
         },
       ],
     },
